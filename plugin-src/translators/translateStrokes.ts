@@ -9,7 +9,7 @@ export const translateStrokes = (
   const sharedStrokeProperties: Stroke = {
     strokeWidth: translateStrokeWeight(node),
     strokeAlignment: translateStrokeAlignment(node.strokeAlign),
-    strokeStyle: node.dashPattern.length ? 'dashed' : 'solid'
+    strokeStyle: node.strokeDashes.length ? 'dashed' : 'solid'
   };
 
   const penpotStrokes: Stroke[] = [];
