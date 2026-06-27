@@ -1,3 +1,5 @@
+import './types';
+
 import { getUserData } from '@plugin/getUserData';
 import { handleExportMessage, handleRetryMessage, postPluginError } from '@plugin/handleMessage';
 import { isFigJamEditor, isSlidesEditor } from '@plugin/utils';
@@ -16,9 +18,9 @@ type ExportMessage = {
 };
 
 const sendEditorType = (): void => {
-  figma.ui.postMessage({
+  mg.ui.postMessage({
     type: 'EDITOR_TYPE',
-    data: figma.editorType
+    data: mg.editorType
   });
 };
 
@@ -42,24 +44,24 @@ const onMessage: MessageEventHandler = message => {
     }
 
     if (message.type === 'cancel') {
-      figma.closePlugin();
+      mg.closePlugin();
     }
 
     if (message.type === 'resize') {
       const width = message.width ?? BASE_WIDTH;
       const height = message.height ?? BASE_HEIGHT;
-      figma.ui.resize(width, height);
+      mg.ui.resize(width, height);
     }
   } catch (error) {
     postPluginError(error);
   }
 };
 
-figma.showUI(__html__, { themeColors: true, width: BASE_WIDTH, height: BASE_HEIGHT });
-figma.ui.onmessage = onMessage;
+mg.showUI(__html__, { themeColors: true, width: BASE_WIDTH, height: BASE_HEIGHT });
+mg.ui.onmessage = onMessage;
 
 if (!isSlidesEditor() && !isFigJamEditor()) {
-  figma.teamLibrary
+  mg.teamLibrary
     .getAvailableLibraryVariableCollectionsAsync()
     .then(collections => {
       const libraryNames = Array.from(
@@ -70,7 +72,7 @@ if (!isSlidesEditor() && !isFigJamEditor()) {
         )
       );
 
-      figma.ui.postMessage({
+      mg.ui.postMessage({
         type: 'EXTERNAL_LIBRARIES',
         data: libraryNames
       });
