@@ -1,0 +1,6 @@
+/* Minimal base styles for MasterGo plugin UI (replaces @create-figma-plugin/ui/css/base.css) */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html, body, #root { height: 100%; width: 100%; overflow: hidden; }
+body { font-family: Inter, system-ui, -apple-system, sans-serif; font-size: 11px; line-height: 1.5; color: var(--figma-color-text, #1e1e1e); background: var(--figma-color-bg, #ffffff); }
+input, textarea, select, button { font-family: inherit; font-size: inherit; }
+button { cursor: pointer; }
