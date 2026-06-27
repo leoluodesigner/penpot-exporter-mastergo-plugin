@@ -11,7 +11,7 @@ const isTextStyle = (style: BaseStyle): style is TextStyle => {
 };
 
 export const registerTextStyles = async (): Promise<void> => {
-  const localTextStyles = await figma.getLocalTextStylesAsync();
+  const localTextStyles = await mg.getLocalTextStylesAsync();
   localTextStyles.forEach(style => {
     textStyles.set(style.id, style);
   });
@@ -27,7 +27,7 @@ export const processTextStyles = async (
   let currentStyle = currentAsset;
 
   for (const [styleId, style] of textStyles.entries()) {
-    const figmaStyle = style ?? (await figma.getStyleByIdAsync(styleId));
+    const figmaStyle = style ?? (await mg.getStyleByIdAsync(styleId));
     if (figmaStyle && isTextStyle(figmaStyle)) {
       styles[styleId] = translateTextStyle(figmaStyle);
     }
