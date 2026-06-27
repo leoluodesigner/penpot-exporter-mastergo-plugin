@@ -87,7 +87,7 @@ export const translateStrokeCap = (vertex: VectorVertex): StrokeCaps | undefined
 const translateStrokeWeight = (
   node: MinimalStrokesMixin | (MinimalStrokesMixin & IndividualStrokesMixin)
 ): number => {
-  if (node.strokeWeight !== figma.mixed) {
+  if (node.strokeWeight !== mg.mixed) {
     return node.strokeWeight;
   }
 
