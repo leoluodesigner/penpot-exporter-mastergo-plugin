@@ -18,8 +18,9 @@ import {
 
 import type { LayoutAttributes, LayoutChildAttributes } from '@ui/lib/types/shapes/layout';
 
-export const transformAutoLayout = (node: BaseFrameMixin): LayoutAttributes => {
-  const layout = translateLayoutMode(node.layoutMode);
+// MasterGo uses flexMode instead of layoutMode, mainAxisSizingMode instead of layoutSizingHorizontal
+export const transformAutoLayout = (node: any): LayoutAttributes => {
+  const layout = translateLayoutMode(node.flexMode ?? node.layoutMode ?? 'NONE');
 
   if (layout === undefined) {
     return {};
@@ -40,22 +41,17 @@ export const transformAutoLayout = (node: BaseFrameMixin): LayoutAttributes => {
   if (layout === 'flex') {
     return {
       ...commonAttributes,
-      layoutFlexDir: translateLayoutFlexDir(node.layoutMode),
+      layoutFlexDir: translateLayoutFlexDir(node.flexMode ?? node.layoutMode),
       layoutWrapType: translateLayoutWrapType(node)
     };
   }
 
-  return {
-    ...commonAttributes,
-    layoutGridDir: translateLayoutGridDir(node.layoutMode),
-    layoutGridRows: translateGridTracks(node.gridRowSizes),
-    layoutGridColumns: translateGridTracks(node.gridColumnSizes),
-    layoutGridCells: translateGridCells(node)
-  };
+  return commonAttributes;
 };
 
+// MasterGo uses mainAxisSizingMode / crossAxisSizingMode instead of layoutSizingHorizontal/Vertical
 export const transformLayoutAttributes = (
-  node: LayoutMixin,
+  node: any,
   isFrame: boolean = false,
   isText: boolean = false
 ): Pick<
@@ -69,10 +65,13 @@ export const transformLayoutAttributes = (
   | 'layoutItemMaxW'
   | 'layoutItemMinW'
 > => {
+  const hSizing = node.mainAxisSizingMode ?? node.layoutSizingHorizontal ?? 'FIXED';
+  const vSizing = node.crossAxisSizingMode ?? node.layoutSizingVertical ?? 'FIXED';
+
   return {
-    'layoutItemH-Sizing': translateLayoutSizing(node.layoutSizingHorizontal, isFrame, isText),
-    'layoutItemV-Sizing': translateLayoutSizing(node.layoutSizingVertical, isFrame, isText),
-    'layoutItemAlignSelf': translateLayoutItemAlignSelf(node.layoutAlign),
+    'layoutItemH-Sizing': translateLayoutSizing(hSizing, isFrame, isText),
+    'layoutItemV-Sizing': translateLayoutSizing(vSizing, isFrame, isText),
+    'layoutItemAlignSelf': translateLayoutItemAlignSelf(node.layoutAlign ?? 'INHERIT'),
     'layoutItemAbsolute': node.layoutPositioning === 'ABSOLUTE',
     'layoutItemMaxH': node.maxHeight ?? undefined,
     'layoutItemMinH': node.minHeight ?? undefined,
