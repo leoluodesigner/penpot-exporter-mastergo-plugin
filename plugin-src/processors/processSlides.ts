@@ -9,7 +9,7 @@ import type { PenpotNode } from '@ui/types/penpotNode';
 export const processSlides = async (root: DocumentNode): Promise<PenpotPage[]> => {
   // Reverse the grid: Penpot's layer panel renders the last child on top, and
   // the prototype playback follows the same order.
-  const slides = figma.getCanvasGrid().flat().reverse();
+  const slides = mg.getCanvasGrid().flat().reverse();
 
   reportProgress({
     type: 'PROGRESS_STEP',
