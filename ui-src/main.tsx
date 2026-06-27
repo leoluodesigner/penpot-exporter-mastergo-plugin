@@ -1,4 +1,4 @@
-import '@create-figma-plugin/ui/css/base.css';
+import '@ui/css/base.css';
 import * as Sentry from '@sentry/react';
 import type { JSX } from 'preact';
 import { StrictMode } from 'preact/compat';
