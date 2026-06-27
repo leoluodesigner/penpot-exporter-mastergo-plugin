@@ -6,9 +6,9 @@ const isComponentSetDefaultStyle = (node: ComponentSetNode): boolean => {
   return (
     node.cornerRadius === 5 &&
     node.strokeAlign === 'INSIDE' &&
-    node.dashPattern.length === 2 &&
-    node.dashPattern[0] === 10 &&
-    node.dashPattern[1] === 5 &&
+    node.strokeDashes.length === 2 &&
+    node.strokeDashes[0] === 10 &&
+    node.strokeDashes[1] === 5 &&
     node.strokeWeight === 1 &&
     node.strokes.length === 1 &&
     node.strokes[0].blendMode === 'NORMAL' &&
