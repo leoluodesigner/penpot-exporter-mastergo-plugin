@@ -4,7 +4,7 @@
     "target": "ES2019",
     "lib": ["ES2019"],
     "strict": true,
-    "types": ["@figma/plugin-typings"],
+    "types": [],
     "module": "ESNext",
     "moduleResolution": "bundler",
     "skipLibCheck": true,
