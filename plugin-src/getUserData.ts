@@ -1,7 +1,7 @@
 import { reportProgress } from '@plugin/utils';
 
 export const getUserData = (): void => {
-  const user = figma.currentUser;
+  const user = mg.currentUser;
 
   if (!user || !user.id) {
     console.warn('Could not get user data');
