@@ -38,7 +38,7 @@ const syncAttributes: SyncAttributes = {
   strokeCap: ['stroke-group'],
   strokeJoin: ['stroke-group'],
   strokeMiterLimit: ['stroke-group'],
-  dashPattern: ['stroke-group'],
+  strokeDashes: ['stroke-group'],
   strokeStyleId: ['stroke-group'],
   stokeTopWeight: ['stroke-group'],
   strokeBottomWeight: ['stroke-group'],
