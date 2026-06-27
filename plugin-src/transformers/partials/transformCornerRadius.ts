@@ -3,7 +3,7 @@ import type { ShapeAttributes } from '@ui/lib/types/shapes/shape';
 const isRectangleCornerMixin = (
   node: CornerMixin | (CornerMixin & RectangleCornerMixin)
 ): node is CornerMixin & RectangleCornerMixin => {
-  return 'topLeftRadius' in node && node.cornerRadius === figma.mixed;
+  return 'topLeftRadius' in node && node.cornerRadius === mg.mixed;
 };
 
 export const transformCornerRadius = (
@@ -18,7 +18,7 @@ export const transformCornerRadius = (
     };
   }
 
-  if (node.cornerRadius !== figma.mixed) {
+  if (node.cornerRadius !== mg.mixed) {
     return {
       r1: node.cornerRadius,
       r2: node.cornerRadius,
