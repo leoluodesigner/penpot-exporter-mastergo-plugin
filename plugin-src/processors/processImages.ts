@@ -4,7 +4,7 @@ import { yieldByTime } from '@common/sleep';
 import { images } from '@plugin/libraries';
 import { flushProgress, reportProgress } from '@plugin/utils';
 
-// `getBytesAsync` is a round-trip to the Figma host, so fetching images is
+// `getBytesAsync` is a round-trip to the MasterGo host, so fetching images is
 // latency-bound. A small pool keeps a few requests in flight at once instead of
 // waiting for each one sequentially.
 const POOL_SIZE = 3;
