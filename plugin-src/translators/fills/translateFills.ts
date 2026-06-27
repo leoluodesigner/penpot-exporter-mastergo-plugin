@@ -24,9 +24,9 @@ export const translateFill = (fill: Paint): Fill | undefined => {
 };
 
 export const translateFills = (
-  fills: readonly Paint[] | typeof figma.mixed | undefined
+  fills: readonly Paint[] | typeof mg.mixed | undefined
 ): Fill[] => {
-  if (fills === undefined || fills === figma.mixed) return [];
+  if (fills === undefined || fills === mg.mixed) return [];
 
   const penpotFills: Fill[] = [];
 
@@ -43,9 +43,9 @@ export const translateFills = (
 };
 
 export const translateFillStyleId = (
-  fillStyleId: string | typeof figma.mixed | undefined
+  fillStyleId: string | typeof mg.mixed | undefined
 ): string | undefined => {
-  if (fillStyleId === figma.mixed || fillStyleId === undefined) return;
+  if (fillStyleId === mg.mixed || fillStyleId === undefined) return;
 
   if (!paintStyles.has(fillStyleId)) {
     paintStyles.set(fillStyleId, undefined);
