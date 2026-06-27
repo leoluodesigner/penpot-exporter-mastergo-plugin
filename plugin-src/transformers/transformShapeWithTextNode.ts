@@ -106,11 +106,8 @@ const exportSvg = async (
   svgOutlineText: boolean
 ): Promise<string | undefined> => {
   try {
-    return await node.exportAsync({
-      format: 'SVG_STRING',
-      svgOutlineText,
-      svgIdAttribute: false
-    });
+    const result = await mg.exportSvgByLayerIds([node.id], { format: 'SVG_STRING' });
+    return typeof result === 'string' ? result : new TextDecoder().decode(result);
   } catch (error) {
     console.warn(
       `Failed to export shape-with-text "${node.name}" as SVG (outline=${svgOutlineText})`,
