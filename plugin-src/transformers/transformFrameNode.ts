@@ -38,7 +38,7 @@ export const transformFrameNode = async (
 
     referencePoint = { x, y };
 
-    // Figma API does not expose strokes, blend modes, corner radius, or constraint proportions for sections,
+    // MasterGo API does not expose strokes, blend modes, corner radius, or constraint proportions for sections,
     // they plan to add it in the future. Refactor this when available.
     frameSpecificAttributes = {
       // @see: https://forum.figma.com/t/why-are-strokes-not-available-on-section-nodes/41658
