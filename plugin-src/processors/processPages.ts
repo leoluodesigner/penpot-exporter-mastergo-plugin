@@ -14,7 +14,7 @@ export const processPages = async (
   let currentPage = 1;
 
   // Get pages to process based on scope
-  const pagesToProcess = scope === 'current' ? [figma.currentPage] : node.children;
+  const pagesToProcess = scope === 'current' ? [mg.document.currentPage] : node.children;
 
   reportProgress({
     type: 'PROGRESS_STEP',
