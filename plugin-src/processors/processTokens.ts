@@ -25,7 +25,7 @@ export const resolveVariableValue = async (
     return null;
   }
 
-  const variable = await figma.variables.getVariableByIdAsync(variableId);
+  const variable = await mg.variables.getVariableByIdAsync(variableId);
   if (!variable) {
     return null;
   }
@@ -145,14 +145,14 @@ const resolveAliases = async (sets: TokenSets): Promise<TokenSets> => {
 
 const getVariables = async (collection: VariableCollection): Promise<Variable[]> => {
   const results = await Promise.all(
-    collection.variableIds.map(id => figma.variables.getVariableByIdAsync(id))
+    collection.variableIds.map(id => mg.variables.getVariableByIdAsync(id))
   );
 
   return results.filter((v): v is Variable => !!v);
 };
 
 export const processTokens = async (): Promise<Tokens | undefined> => {
-  const localCollections = await figma.variables.getLocalVariableCollectionsAsync();
+  const localCollections = await mg.variables.getLocalVariableCollectionsAsync();
 
   const sets: TokenSets = {};
   const themes: Theme[] = [];
