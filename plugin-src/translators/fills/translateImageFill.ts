@@ -17,7 +17,7 @@ const translateImage = (imageHash: string | null): PartialImageColor | undefined
   if (!imageHash) return;
 
   if (!images.has(imageHash)) {
-    images.set(imageHash, figma.getImageByHash(imageHash));
+    images.set(imageHash, mg.getImageByHash(imageHash));
   }
 
   return {
