@@ -34,7 +34,7 @@ export const transformComponentNode = async (node: ComponentNode): Promise<Compo
   const isVariant = node.parent?.type === 'COMPONENT_SET';
   const variantId = isVariant ? transformId(node.parent) : undefined;
 
-  node.setPluginData('figmaFile', figma.root.name);
+  node.setPluginData('figmaFile', mg.document.name);
 
   const status = await node.getPublishStatusAsync();
 
