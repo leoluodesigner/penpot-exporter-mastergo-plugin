@@ -11,7 +11,7 @@ const isPaintStyle = (style: BaseStyle): style is PaintStyle => {
 };
 
 export const registerPaintStyles = async (): Promise<void> => {
-  const localPaintStyles = await figma.getLocalPaintStylesAsync();
+  const localPaintStyles = await mg.getLocalPaintStylesAsync();
   localPaintStyles.forEach(style => {
     paintStyles.set(style.id, style);
   });
@@ -27,7 +27,7 @@ export const processPaintStyles = async (
   let currentStyle = currentAsset;
 
   for (const [styleId, paintStyle] of paintStyles.entries()) {
-    const figmaStyle = paintStyle ?? (await figma.getStyleByIdAsync(styleId));
+    const figmaStyle = paintStyle ?? (await mg.getStyleByIdAsync(styleId));
     if (figmaStyle && isPaintStyle(figmaStyle)) {
       styles[styleId] = translatePaintStyle(figmaStyle);
     }
