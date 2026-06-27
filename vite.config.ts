@@ -1,6 +1,7 @@
 import { sentryVitePlugin } from '@sentry/vite-plugin';
 import react from '@vitejs/plugin-react';
 import * as process from 'node:process';
+import { fileURLToPath } from 'node:url';
 import { type UserConfig, defineConfig } from 'vite';
 import { viteSingleFile } from 'vite-plugin-singlefile';
 import svgr from 'vite-plugin-svgr';
@@ -23,7 +24,9 @@ export default ({ mode }): UserConfig => {
       alias: {
         'react': 'preact/compat',
         'react-dom': 'preact/compat',
-        '!../css/base.css': '../css/base.css'
+        '!../css/base.css': '../css/base.css',
+        '@create-figma-plugin/ui': fileURLToPath(new URL('./shim/figma-plugin-ui', import.meta.url)),
+        '@create-figma-plugin/ui/css/base.css': fileURLToPath(new URL('./ui-src/css/base.css', import.meta.url))
       }
     },
     build: {
