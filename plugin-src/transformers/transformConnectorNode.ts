@@ -46,11 +46,8 @@ export const transformConnectorNode = async (
 
 const exportSvg = async (node: ConnectorNode): Promise<string | undefined> => {
   try {
-    return await node.exportAsync({
-      format: 'SVG_STRING',
-      svgOutlineText: true,
-      svgIdAttribute: false
-    });
+    const result = await mg.exportSvgByLayerIds([node.id], { format: 'SVG_STRING' });
+    return typeof result === 'string' ? result : new TextDecoder().decode(result);
   } catch (error) {
     console.warn(`Failed to export connector "${node.name}" as SVG`, error);
     return;
