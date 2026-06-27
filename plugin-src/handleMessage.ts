@@ -34,9 +34,9 @@ const initializeExternalLibraries = (libraries: ExternalLibrary[]): void => {
 };
 
 const buildDocument = async (scope: ExportScope): Promise<PenpotDocument> => {
-  if (isSlidesEditor()) return transformSlidesDocumentNode(figma.root);
-  if (isFigJamEditor()) return transformFigJamDocumentNode(figma.root);
-  return transformDocumentNode(figma.root, scope);
+  if (isSlidesEditor()) return transformSlidesDocumentNode(mg.document);
+  if (isFigJamEditor()) return transformFigJamDocumentNode(mg.document);
+  return transformDocumentNode(mg.document, scope);
 };
 
 const buildErrorPayload = (error: unknown): ErrorPayload => ({
@@ -49,7 +49,7 @@ const buildErrorPayload = (error: unknown): ErrorPayload => ({
 
 export const postPluginError = (error: unknown): void => {
   console.error('Penpot Exporter: unhandled error', error);
-  figma.ui.postMessage({
+  mg.ui.postMessage({
     type: 'ERROR',
     data: buildErrorPayload(error)
   });
