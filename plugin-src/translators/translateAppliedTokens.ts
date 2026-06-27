@@ -62,7 +62,7 @@ const getBoundVariableId = (
     if (
       variableType === 'strokeTopWeight' &&
       'strokeWeight' in node &&
-      figma.mixed === node.strokeWeight
+      mg.mixed === node.strokeWeight
     ) {
       return null;
     }
@@ -74,7 +74,7 @@ const getBoundVariableId = (
     return null;
   }
 
-  if (variableType === 'fills' && 'fills' in node && figma.mixed !== node.fills) {
+  if (variableType === 'fills' && 'fills' in node && mg.mixed !== node.fills) {
     return getBoundVariableIdForPaint(node.fills);
   }
 
@@ -85,26 +85,26 @@ const getBoundVariableId = (
   if (isTextNode(node)) {
     switch (variableType) {
       case 'letterSpacing':
-        if (figma.mixed !== node.letterSpacing) {
+        if (mg.mixed !== node.letterSpacing) {
           return boundVariable[0].id;
         }
 
         return null;
       case 'fontSize':
-        if (figma.mixed !== node.fontSize) {
+        if (mg.mixed !== node.fontSize) {
           return boundVariable[0].id;
         }
 
         return null;
 
       case 'fontWeight':
-        if (figma.mixed !== node.fontWeight) {
+        if (mg.mixed !== node.fontWeight) {
           return boundVariable[0].id;
         }
 
         return null;
       case 'fontFamily':
-        if (figma.mixed !== node.fontName) {
+        if (mg.mixed !== node.fontName) {
           return boundVariable[0].id;
         }
 
