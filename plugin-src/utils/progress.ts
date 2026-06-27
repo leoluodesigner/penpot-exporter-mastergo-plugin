@@ -15,7 +15,7 @@ const messageBuffer = createMessageBuffer<PluginMessage>({
     if (message.type === 'PROGRESS_CURRENT_ITEM') {
       lastSentCurrentItem = message.data;
     }
-    figma.ui.postMessage(message);
+    mg.ui.postMessage(message);
   }
 });
 
