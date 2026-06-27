@@ -4,7 +4,7 @@ import { translateEffectStyleToken } from '@plugin/translators/tokens';
 import type { Set } from '@ui/lib/types/shapes/tokens';
 
 export const processStyleTokens = async (): Promise<[string, Set] | null> => {
-  const effectStyles = await figma.getLocalEffectStylesAsync();
+  const effectStyles = await mg.getLocalEffectStylesAsync();
 
   const set: Set = {};
 
