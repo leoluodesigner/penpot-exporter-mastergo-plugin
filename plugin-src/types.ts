@@ -56,24 +56,19 @@ type StrokeCap =
   | 'NONE'
   | 'ROUND'
   | 'SQUARE'
-  | 'ARROW_LINES'
-  | 'ARROW_EQUILATERAL'
-  | 'DIAMOND_FILLED'
-  | 'CIRCLE_FILLED'
-  | 'TRIANGLE_FILLED'
-  | 'WASHI_TAPE_1'
-  | 'WASHI_TAPE_2'
-  | 'WASHI_TAPE_3'
-  | 'WASHI_TAPE_4'
-  | 'WASHI_TAPE_5'
-  | 'WASHI_TAPE_6';
+  | 'LINE_ARROW'
+  | 'TRIANGLE_ARROW'
+  | 'DIAMOND'
+  | 'RING'
+  | 'TRIANGLE_ARROW'
+  | 'LINE'
 
 type ConnectorStrokeCap =
   | 'NONE'
-  | 'ARROW_EQUILATERAL'
-  | 'DIAMOND_FILLED'
-  | 'CIRCLE_FILLED'
-  | 'TRIANGLE_FILLED';
+  | 'TRIANGLE_ARROW'
+  | 'DIAMOND'
+  | 'RING'
+  | 'TRIANGLE_ARROW';
 
 type StrokeAlign = 'CENTER' | 'INSIDE' | 'OUTSIDE';
 
@@ -201,16 +196,16 @@ interface EffectStyle extends BaseStyle {
 }
 
 interface LayoutMixin {
-  readonly layoutMode: 'NONE' | 'HORIZONTAL' | 'VERTICAL';
-  readonly primaryAxisAlignItems: 'MIN' | 'MAX' | 'CENTER' | 'SPACE_BETWEEN';
-  readonly counterAxisAlignItems: 'MIN' | 'MAX' | 'CENTER';
+  readonly flexMode: 'NONE' | 'HORIZONTAL' | 'VERTICAL';
+  readonly mainAxisAlignItems: 'FLEX_START' | 'FLEX_END' | 'CENTER' | 'SPACING_BETWEEN';
+  readonly crossAxisAlignItems: 'FLEX_START' | 'FLEX_END' | 'CENTER';
   readonly paddingLeft: number;
   readonly paddingRight: number;
   readonly paddingTop: number;
   readonly paddingBottom: number;
   readonly itemSpacing: number;
-  readonly layoutSizingHorizontal: 'FIXED' | 'HUG' | 'FILL';
-  readonly layoutSizingVertical: 'FIXED' | 'HUG' | 'FILL';
+  readonly mainAxisSizingMode: 'FIXED' | 'AUTO';
+  readonly crossAxisSizingMode: 'FIXED' | 'AUTO';
 }
 
 interface BlendMixin {
@@ -227,7 +222,7 @@ interface GeometryMixin {
   strokeAlign: StrokeAlign;
   strokeCap: StrokeCap;
   strokeJoin: 'MITER' | 'BEVEL' | 'ROUND';
-  dashPattern: readonly number[];
+  strokeDashes: readonly number[];
   fillStyleId: string | typeof mg.mixed;
   strokeStyleId: string;
   effectStyleId: string;
@@ -255,7 +250,7 @@ interface MinimalStrokesMixin {
   strokes: readonly Paint[];
   strokeWeight: number | typeof mg.mixed;
   strokeAlign: StrokeAlign;
-  dashPattern: readonly number[];
+  strokeDashes: readonly number[];
 }
 
 interface MinimalFillsMixin {
@@ -330,7 +325,7 @@ interface Effect {
 
 interface LayoutGrid {
   readonly pattern: 'COLUMNS' | 'ROWS' | 'GRID';
-  readonly alignment: 'MIN' | 'MAX' | 'CENTER' | 'STRETCH';
+  readonly alignment: 'FLEX_START' | 'FLEX_END' | 'CENTER' | 'STRETCH';
   readonly gutterSize: number;
   readonly count: number;
   readonly sectionSize: number;
@@ -370,7 +365,7 @@ interface SceneNode {
   readonly strokes: readonly Paint[];
   readonly strokeWeight: number | typeof mg.mixed;
   readonly strokeAlign: StrokeAlign;
-  readonly dashPattern: readonly number[];
+  readonly strokeDashes: readonly number[];
   readonly effects: readonly Effect[];
   readonly cornerRadius: number | typeof mg.mixed;
   readonly blendMode: BlendMode;
