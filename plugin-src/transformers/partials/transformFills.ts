@@ -41,7 +41,7 @@ const hasFillStyle = (node: FillsLike | VectorRegion | VectorNode | TextSegment)
   if (!editorSupportsStylesApi()) return false;
 
   return (
-    node.fillStyleId !== figma.mixed &&
+    node.fillStyleId !== mg.mixed &&
     node.fillStyleId !== undefined &&
     node.fillStyleId.length > 0
   );
